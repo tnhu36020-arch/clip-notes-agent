@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d8f0dd">
+  <title>Clip Notes — YouTube Transcript & Summary Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#d8f0dd;--surface:rgba(255,255,255,.76);--ink:#4a2f1f;--muted:#7a5a46;--line:rgba(110,72,48,.25);--mark:#f1d9b5;--accent:#8b5e3c;--ok:#1f6b45;--okbg:#e0f5e7;--bad:#9a2b22;--badbg:#fae3dc;--warn:#7a5200;--warnbg:#faecc8;--b1:#bfe8c8;--b2:#a9e0d4;--b3:#d9f1c9;--b4:#b7dcec;--head:"Bernard MT Condensed",Oswald,"Arial Narrow",Impact,sans-serif;color-scheme:light}
+    :root[data-theme="dark"]{--bg:#17241d;--surface:rgba(40,30,24,.82);--ink:#f2e4d4;--muted:#cdb59e;--line:rgba(220,190,160,.25);--mark:#6a4a2c;--accent:#d3a77c;--ok:#8fe0ae;--okbg:#143422;--bad:#ffaaa0;--badbg:#461c18;--warn:#ffd68a;--warnbg:#42320e;color-scheme:dark}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;overflow-x:hidden;background:var(--bg);color:var(--ink);font:400 16px/1.6 "IBM Plex Sans",system-ui,sans-serif;position:relative}button,input,select{font:inherit}button{cursor:pointer}.blur{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}.blur i{position:absolute;border-radius:50%;filter:blur(72px);opacity:.75}.blur i:nth-child(1){width:55vmax;height:55vmax;left:-15vmax;top:-12vmax;background:var(--b1)}.blur i:nth-child(2){width:45vmax;height:45vmax;right:-14vmax;top:8vmax;background:var(--b2)}.blur i:nth-child(3){width:50vmax;height:50vmax;left:10vmax;bottom:-22vmax;background:var(--b3)}.blur i:nth-child(4){width:30vmax;height:30vmax;right:6vmax;bottom:-6vmax;background:var(--b4)}main{position:relative;z-index:1;max-width:1020px;margin:auto;padding:38px 20px 70px}header{max-width:780px}.mono{font:400 .84rem/1.5 "IBM Plex Mono",monospace}.muted{color:var(--muted)}h1,h2{font-family:var(--head);font-weight:600;line-height:1.05;letter-spacing:.01em}h1{font-size:clamp(2.8rem,8vw,5rem);max-width:14ch;margin:8px 0 16px}h2{font-size:2rem;margin:0 0 8px}h3{font-size:1rem;line-height:1.3;margin:0 0 7px}.lede{font-size:1.12rem;color:var(--muted);max-width:65ch}.note,.panel,.steps{background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 12px 35px rgba(74,47,31,.06)}.note{border-left:4px solid var(--accent);border-radius:12px;padding:12px 16px;margin:18px 0}.note.bad{border-left-color:var(--bad);background:var(--badbg)}.note.ok{border-left-color:var(--ok);background:var(--okbg)}section{margin-top:42px}.panel{border-radius:20px;padding:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}.field{margin:12px 0}.field label{display:block;font-weight:600;margin:0 0 5px}.field input,.field select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}.field input:focus,.field select:focus,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.hint{font-size:.88rem;color:var(--muted);margin:4px 0 0}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.btn{border:1.5px solid var(--accent);border-radius:999px;padding:9px 17px;color:var(--ink);background:rgba(255,255,255,.35);font-weight:600}.btn.primary{background:var(--accent);color:#fff8ef}.btn:disabled{opacity:.48;cursor:not-allowed}.badge{display:inline-flex;padding:3px 11px;border-radius:99px;font-size:.85rem;font-weight:600;background:var(--warnbg);color:var(--warn)}.badge.ok{background:var(--okbg);color:var(--ok)}.badge.bad{background:var(--badbg);color:var(--bad)}.steps{list-style:none;padding:0;margin:18px 0 0;border-radius:18px;overflow:hidden}.steps li{display:grid;grid-template-columns:2.1rem 1fr;gap:12px;padding:13px 17px;border-top:1px solid var(--line)}.steps li:first-child{border:0}.steps b{font:600 1.4rem/1.2 var(--head);color:var(--accent)}.steps li.fail{background:var(--badbg);color:var(--bad)}.result{display:none}.result.show{display:block}.result h3{margin-top:16px}.summary{white-space:pre-wrap;overflow-wrap:anywhere}.status-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:12px}.approve{display:flex;gap:9px;align-items:flex-start;margin-top:15px;padding:12px;border-radius:12px;background:rgba(255,255,255,.35);border:1px solid var(--line)}.approve input{margin-top:6px}.transcript{max-height:380px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;border-radius:12px;background:rgba(255,255,255,.35);font:.84rem/1.6 "IBM Plex Mono",monospace}.hidden{display:none!important}.spinner{display:inline-block;width:1em;height:1em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px}@keyframes spin{to{transform:rotate(360deg)}}footer{margin-top:48px;color:var(--muted);font-size:.9rem}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17241d;--surface:rgba(40,30,24,.82);--ink:#f2e4d4;--muted:#cdb59e;--line:rgba(220,190,160,.25);--mark:#6a4a2c;--accent:#d3a77c;--ok:#8fe0ae;--okbg:#143422;--bad:#ffaaa0;--badbg:#461c18;--warn:#ffd68a;--warnbg:#42320e;color-scheme:dark}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="blur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <main>
+    <header>
+      <p class="mono muted">CLIP NOTES · YOUTUBE TRANSCRIPT ASSISTANT</p>
+      <h1>Paste a link. Get a summary you can check.</h1>
+      <p class="lede">The site retrieves captions, summarizes only readable transcript text, and waits for your approval before sending anything to Lark.</p>
+      <div class="note">Your transcript is processed by the backend and is not saved by this app. A summary is sent to the configured Lark recipient only after you review it and confirm.</div>
+    </header>
+
+    <section aria-labelledby="setup-title">
+      <h2 id="setup-title">Connect to your backend</h2>
+      <div class="panel">
+        <div class="field"><label for="apiBase">Backend URL</label><input id="apiBase" type="url" value="http://127.0.0.1:8000" autocomplete="url" placeholder="https://your-service.onrender.com"><p class="hint">For local testing use http://127.0.0.1:8000. After deployment, enter your Render service URL.</p></div>
+        <div class="actions"><button class="btn" id="checkBtn" type="button">Check connection</button><span id="healthBadge" class="badge">Not checked</span></div>
+        <div id="healthNote" class="hint" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="login-title">
+      <h2 id="login-title">Sign in</h2>
+      <div class="panel">
+        <p class="muted">Use the app password configured by the project owner on the backend.</p>
+        <div class="field"><label for="appPassword">App password</label><input id="appPassword" type="password" autocomplete="current-password" maxlength="512"></div>
+        <div class="actions"><button class="btn primary" id="loginBtn" type="button">Sign in</button><span id="loginStatus" class="hint" role="status" aria-live="polite"></span></div>
+      </div>
+    </section>
+
+    <section id="workSection" class="hidden" aria-labelledby="work-title">
+      <h2 id="work-title">Summarize a video</h2>
+      <div class="panel">
+        <form id="summaryForm">
+          <div class="field"><label for="youtubeUrl">YouTube video or Shorts link</label><input id="youtubeUrl" type="url" required maxlength="2048" placeholder="https://www.youtube.com/watch?v=…"></div>
+          <div class="grid">
+            <div class="field"><label for="summaryLanguage">Summary language</label><input id="summaryLanguage" value="English" maxlength="40"></div>
+            <div class="field"><label for="transcriptLanguage">Preferred transcript language (optional)</label><input id="transcriptLanguage" maxlength="20" placeholder="e.g. en"><p class="hint">If blank, the backend prefers English, then tries other available captions.</p></div>
+          </div>
+          <div class="actions"><button class="btn primary" id="summarizeBtn" type="submit">Retrieve transcript & summarize</button><span id="jobStatus" class="hint" role="status" aria-live="polite"></span></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="resultSection" class="result" aria-labelledby="resultTitle">
+      <h2 id="resultTitle">Review your summary</h2>
+      <div class="panel">
+        <div class="status-line"><span id="transcriptBadge" class="badge">Transcript status</span><span id="transcriptLanguageBadge" class="badge hidden"></span></div>
+        <h3 id="topic">Title / topic</h3>
+        <div id="summaryText" class="summary"></div>
+        <div class="actions"><button class="btn" id="copyBtn" type="button">Copy summary</button></div>
+        <details id="transcriptDetails" class="field"><summary>View retrieved transcript</summary><div id="transcriptText" class="transcript"></div></details>
+        <div class="approve"><input id="approval" type="checkbox"><label for="approval">I reviewed this summary and approve sending it to the configured Lark recipient.</label></div>
+        <div class="actions"><button class="btn primary" id="sendBtn" type="button" disabled>Approve & send to Lark</button><span id="sendStatus" class="hint" role="status" aria-live="polite"></span></div>
+        <p id="larkHint" class="hint">Lark sending is disabled until the backend owner configures the Lark app and recipient.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="steps-title">
+      <h2 id="steps-title">How it works</h2>
+      <ol class="steps">
+        <li><b>1</b><div><h3>Check the link</h3>Only YouTube video and Shorts links are accepted.</div></li>
+        <li><b>2</b><div><h3>Retrieve captions</h3>The backend tries available subtitle tracks without downloading the video.</div></li>
+        <li><b>3</b><div><h3>Verify transcript text</h3>Caption-track metadata alone is not treated as a transcript.</div></li>
+        <li><b>4</b><div><h3>Summarize and mark uncertainty</h3>Only transcript content is summarized; timestamps are used when available.</div></li>
+        <li class="fail"><b>!</b><div><h3>If retrieval fails</h3>The site explains the failure and does not invent a summary.</div></li>
+      </ol>
+    </section>
+    <footer>Clip Notes · Summaries are generated only from retrieved transcript text. Check captions before relying on them.</footer>
+  </main>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const apiInput = $('apiBase');
+      const savedApi = sessionStorage.getItem('clipNotesApiBase');
+      if (savedApi) apiInput.value = savedApi;
+      let token = '';
+      let latestSummary = '';
+      let larkReady = false;
+      const base = () => apiInput.value.trim().replace(/\/+$/, '');
+      const setBadge = (el, text, cls='') => { el.textContent = text; el.className = `badge ${cls}`.trim(); };
+      async function request(path, options={}) {
+        const headers = {'Content-Type':'application/json', ...(options.headers || {})};
+        if (token) headers.Authorization = `Bearer ${token}`;
+        let response;
+        try { response = await fetch(`${base()}${path}`, {...options, headers}); }
+        catch (_) { throw new Error('Could not reach the backend. Check its URL, deployment status, and CORS settings.'); }
+        let data = {};
+        try { data = await response.json(); } catch (_) {}
+        if (!response.ok) throw new Error(data.detail || `Backend returned HTTP ${response.status}.`);
+        return data;
+      }
+      $('checkBtn').addEventListener('click', async () => {
+        sessionStorage.setItem('clipNotesApiBase', base());
+        $('healthNote').textContent = 'Checking…';
+        try {
+          const data = await request('/api/health');
+          setBadge($('healthBadge'), 'Backend connected', 'ok');
+          larkReady = !!data.lark_configured;
+          $('healthNote').textContent = `Login ${data.login_configured ? 'configured' : 'missing'} · Summary service ${data.summary_configured ? 'configured' : 'missing'} · Transcript tool ${data.yt_dlp_available ? 'available' : 'missing'} · Lark ${larkReady ? 'configured' : 'not configured'}.`;
+          $('larkHint').textContent = larkReady ? 'Approval sends the summary to the recipient configured by the backend owner.' : 'Lark sending is disabled until the backend owner configures the Lark app and recipient.';
+          $('sendBtn').disabled = !token || !larkReady || !$('approval').checked;
+        } catch (error) {
+          setBadge($('healthBadge'), 'Connection failed', 'bad');
+          $('healthNote').textContent = error.message;
+        }
+      });
+      $('loginBtn').addEventListener('click', async () => {
+        $('loginStatus').textContent = 'Signing in…';
+        try {
+          const data = await request('/api/login', {method:'POST', body:JSON.stringify({password:$('appPassword').value})});
+          token = data.access_token;
+          $('appPassword').value = '';
+          $('loginStatus').textContent = 'Signed in for this browser session.';
+          $('workSection').classList.remove('hidden');
+          $('checkBtn').click();
+        } catch (error) { $('loginStatus').textContent = error.message; }
+      });
+      $('appPassword').addEventListener('keydown', (event) => { if (event.key === 'Enter') $('loginBtn').click(); });
+      $('summaryForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        $('resultSection').classList.remove('show');
+        $('jobStatus').innerHTML = '<span class="spinner" aria-hidden="true"></span> Retrieving captions and summarizing…';
+        $('summarizeBtn').disabled = true;
+        try {
+          const data = await request('/api/summarize', {method:'POST', body:JSON.stringify({youtube_url:$('youtubeUrl').value, summary_language:$('summaryLanguage').value || 'English', transcript_language:$('transcriptLanguage').value || null})});
+          latestSummary = data.summary_markdown;
+          $('topic').textContent = data.title_topic || 'Topic from transcript';
+          $('summaryText').textContent = latestSummary;
+          setBadge($('transcriptBadge'), `Transcript: ${data.transcript_status}`, 'ok');
+          const langBadge = $('transcriptLanguageBadge');
+          langBadge.textContent = `Captions: ${data.transcript_language || 'unknown'}`;
+          langBadge.classList.remove('hidden');
+          $('transcriptText').textContent = data.transcript_text || '';
+          $('approval').checked = false;
+          $('sendBtn').disabled = true;
+          $('sendStatus').textContent = '';
+          $('resultSection').classList.add('show');
+          $('jobStatus').textContent = 'Summary ready for your review.';
+          $('resultSection').scrollIntoView({behavior:'smooth', block:'start'});
+        } catch (error) {
+          $('jobStatus').textContent = error.message;
+        } finally { $('summarizeBtn').disabled = false; }
+      });
+      $('approval').addEventListener('change', () => { $('sendBtn').disabled = !token || !larkReady || !$('approval').checked; });
+      $('copyBtn').addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(latestSummary); $('sendStatus').textContent = 'Summary copied.'; }
+        catch (_) { $('sendStatus').textContent = 'Copy failed; select the summary text and copy it manually.'; }
+      });
+      $('sendBtn').addEventListener('click', async () => {
+        if (!latestSummary || !larkReady || !$('approval').checked) return;
+        $('sendBtn').disabled = true;
+        $('sendStatus').textContent = 'Sending approved summary…';
+        try {
+          const result = await request('/api/send-to-lark', {method:'POST', body:JSON.stringify({approval_confirmed:true, summary_markdown:latestSummary})});
+          $('sendStatus').textContent = result.message_id ? `Sent to Lark. Message ID: ${result.message_id}` : 'Sent to Lark.';
+        } catch (error) { $('sendStatus').textContent = error.message; $('sendBtn').disabled = false; }
+      });
+    })();
+  </script>
+</body>
+</html>

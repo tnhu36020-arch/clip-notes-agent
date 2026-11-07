@@ -1,0 +1,1 @@
+Open index.html only after the FastAPI backend is running. During local preview, the default API URL is http://127.0.0.1:8000. On HTMLSpace, enter your deployed Render API URL in the Backend URL field. This frontend contains no secret keys.
